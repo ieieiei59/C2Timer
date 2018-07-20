@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<head>
+  <title>C2Timer</title>
+
+  <!-- Meta Data -->
+  <meta charset="UTF-8">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="author" content="">
+  <meta http-equiv="content-language" content="ja">
+  <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+  
+  <!-- normalize -->
+  <link href="https://yarn.pm/normalize.css" rel="stylesheet"/>
+  
+  <!-- UIkit CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/css/uikit.min.css" />
+
+  <!-- jQuery is required -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+  <!-- UIkit JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/js/uikit-icons.min.js"></script>
+
+  <!-- My Css -->
+  <link href="timer.css" rel="stylesheet"/>
+  <!-- My JS -->
+
+</head>
+<body>
+
+  <div class="uk-container uk-align-center uk-center">
+    <h1 class="uk-h1 uk-text-center">C2Timer</h1>
+
+    <!-- タイマー本体 -->
+    <div class="uk-section uk-text-center">
+
+      <!-- タイム表示 -->
+      <div class="uk-container time-container uk-flex uk-flex-center" id="time-container">
+        <div class="time time" id="time">00:00.000</div>
+      </div>
+
+      <!-- 各種設定 -->
+      <!--
+      <div class="timer-setting" id="timer-settings">
+        <input class="uk-checkbox" name="inspection" type="checkbox" value="false" id="inspection"/>
+        <label class="uk-form-label" for="inspection">インスペクション無し</label>              
+      </div>
+      -->
+      
+      <!-- 説明文 -->
+      <div class="time-description">
+        <p class="time-description-text">
+          スペースを押してタイマーをスタート
+        </p>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <!-- footJS -->
+  <script src="../design/js/navbar.js"></script>
+  <script src="timer.js"></script>
+</body>
