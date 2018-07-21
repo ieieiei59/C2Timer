@@ -1,4 +1,5 @@
 document.onkeydown = keydown;
+document.onkeyup = keyup;
 
 var CubeTimer = class{
     constructor(){
@@ -9,9 +10,9 @@ var CubeTimer = class{
 
         // タイマーの状態保持用
         // statusNum と statusList は内部用
-        this.status = "stop";
+        this._status = "init";
         this._statusNum = 0;
-        this._statusList = ["stop", "inspection", "start"];
+        this._statusList = ["init", "inspection", "start", "stop"];
         this._isPlus2 = false;
         this._isDnf = false;
 
@@ -36,7 +37,7 @@ var CubeTimer = class{
     switchStatus(){
         // タイマーの状態を変更（ロータリースイッチ的な変更をする）
         this._statusNum += 1;
-        this._statusNum %= 3;
+        this._statusNum %= this._statusList.length;
 
         this._status = this._statusList[this._statusNum];
     }
@@ -149,22 +150,51 @@ var cubeTimer = new CubeTimer();
 
 
 function keydown(e){
+
     if(e.keyCode == 32){
+
+
         // スペースキーが押された
-        cubeTimer.switchStatus();
         switch(cubeTimer.getStatus()){
-        case "stop":
-            // タイマーの状態がストップになったときの処理
+        case "init":
+            // 初期状態だった時
             break;
         case "inspection":
             // タイマーの状態がインスペクションになったときの処理
-            cubeTimer.startInspection();
             break;
         case "start":
-            // タイマーの処理がスタートになったときの処理
-            cubeTimer.startTimer();
-            break;            
+            // タイマーの処理がスタートだったときの処理
+            cubeTimer.switchStatus();
+            break;
+        case "stop":
+            // タイマーの状態がストップになったときの処理
+            break;
         }
     }
 }
 
+function keyup(e){
+
+    if(e.keyCode == 32){
+        // スペースキーが押し上げられた
+        switch(cubeTimer.getStatus()){
+        case "init":
+            // 初期状態だった時
+            cubeTimer.switchStatus();
+            cubeTimer.startInspection();
+            break;
+        case "inspection":
+            // タイマーの状態がインスペクションだったときの処理
+            cubeTimer.switchStatus();
+            cubeTimer.startTimer();
+            break;
+        case "start":
+            // タイマーの処理がスタートだったときの処理
+            break;
+        case "stop":
+            // タイマーの状態がストップだったときの処理
+            cubeTimer.switchStatus();
+            break;
+        }
+    }
+}
